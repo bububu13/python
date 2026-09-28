@@ -1,1 +1,1 @@
-print('rgsrgrgser')
+игигигигиг
