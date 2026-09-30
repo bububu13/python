@@ -12,3 +12,20 @@ for i in range(height):
         print(WHITE + pixel * lenght + RESET)
     else:
         print(BLUE + pixel * lenght + RESET)
+
+
+print()
+def sequence():
+    f = open('sequence.txt')
+    s = [float(j) for j in f ]
+    positive = []
+    negative = []
+    for i in s[:]:
+        if i<0:
+            negative.append(i)
+        else:
+            positive.append(i)
+
+    print(f'{BLUE}{' '*int(len(negative)/5)}{(len(negative)/(len(positive)+len(negative)))*100}%{RESET}'+'Отрицательные')
+    print(f'{RED}{' ' * int(len(positive) / 5)}{(len(positive) / (len(positive) + len(negative))) * 100}%{RESET}'+'Положительные')
+sequence()
