@@ -1,3 +1,7 @@
+import os
+import sys
+import time
+
 RED = '\033[41m'
 WHITE = '\033[47m'
 BLUE = '\033[44m'
@@ -27,5 +31,39 @@ def sequence():
             positive.append(i)
 
     print(f'{BLUE}{' '*int(len(negative)/5)}{(len(negative)/(len(positive)+len(negative)))*100}%{RESET}'+'Отрицательные')
-    print(f'{RED}{' ' * int(len(positive) / 5)}{(len(positive) / (len(positive) + len(negative))) * 100}%{RESET}'+'Положительные')
+    print(f'{RED}{' ' * int(len(positive)/5)}{(len(positive) / (len(positive) + len(negative))) * 100}%{RESET}'+'Положительные')
 sequence()
+
+print('')
+def pattern(repeats):
+    height = 5
+    width = 5
+    mid_height = 2
+    mid_width = 2
+    g = f'{WHITE} {' '} {RESET}'
+    for i in range(height):
+        if i<2:
+            print((' '*i+ g+' '*(3-2*i)+g+' '*i)*repeats)
+        if i==2:
+            print((' '* (mid_width+1)+g+' '*(i+1))*repeats)
+        if i>2:
+            print((' '*(4-i)+g+' '*(2*i-5)+g+' '*(4-i))*repeats)
+pattern(5)
+
+# COLORS = ["\033[31m","\033[32m","\033[33m","\033[34m"]
+# SQUARE = """
+# ■ ■ ■ ■
+# ■ ■ ■ ■
+# ■ ■ ■ ■
+# """
+# def anim(delay = 0.5):
+#     for color in COLORS:
+#         os.system('cls')
+#         # \033[H — перемещаем курсор в левый верхний угол (1, 1)
+#         sys.stdout.write("\033[H")
+#         # Выводим квадрат с новым цветом
+#         sys.stdout.write(f"{color}{SQUARE}{RESET}")
+#         sys.stdout.flush()
+#         time.sleep(delay)
+#
+# anim()
