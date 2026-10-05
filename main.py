@@ -1,6 +1,22 @@
 import os
-import sys
+
 import time
+
+frames = [0, 5, 10, 15]
+square = ["# # #", "# # #", "# # #"]
+
+print("\033[?25l", end="")
+
+def anim(repeats):
+    for reps in range(repeats):
+        for x in frames:
+            os.system('cls')
+            for i, line in enumerate(square):
+                print(f"\033[{5 + i};{x}H{line}")
+            time.sleep(0.4)
+
+anim(3)
+
 
 RED = '\033[41m'
 WHITE = '\033[47m'
@@ -50,20 +66,4 @@ def pattern(repeats):
             print((' '*(4-i)+g+' '*(2*i-5)+g+' '*(4-i))*repeats)
 pattern(5)
 
-# COLORS = ["\033[31m","\033[32m","\033[33m","\033[34m"]
-# SQUARE = """
-# ■ ■ ■ ■
-# ■ ■ ■ ■
-# ■ ■ ■ ■
-# """
-# def anim(delay = 0.5):
-#     for color in COLORS:
-#         os.system('cls')
-#         # \033[H — перемещаем курсор в левый верхний угол (1, 1)
-#         sys.stdout.write("\033[H")
-#         # Выводим квадрат с новым цветом
-#         sys.stdout.write(f"{color}{SQUARE}{RESET}")
-#         sys.stdout.flush()
-#         time.sleep(delay)
-#
-# anim()
+
