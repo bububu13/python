@@ -66,4 +66,3 @@ def pattern(repeats):
             print((' '*(4-i)+g+' '*(2*i-5)+g+' '*(4-i))*repeats)
 pattern(5)
 
-
