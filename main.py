@@ -5,7 +5,7 @@ import time
 frames = [0, 5, 10, 15]
 square = ["# # #", "# # #", "# # #"]
 
-print("\033[?25l", end="")
+print("\033[?25l")
 
 def anim(repeats):
     for reps in range(repeats):
@@ -40,7 +40,7 @@ def sequence():
     s = [float(j) for j in f ]
     positive = []
     negative = []
-    for i in s[:]:
+    for i in s:
         if i<0:
             negative.append(i)
         else:
@@ -48,13 +48,12 @@ def sequence():
 
     print(f'{BLUE}{' '*int(len(negative)/5)}{(len(negative)/(len(positive)+len(negative)))*100}%{RESET}'+'Отрицательные')
     print(f'{RED}{' ' * int(len(positive)/5)}{(len(positive) / (len(positive) + len(negative))) * 100}%{RESET}'+'Положительные')
+    f.close()
 sequence()
 
 print('')
 def pattern(repeats):
     height = 5
-    width = 5
-    mid_height = 2
     mid_width = 2
     g = f'{WHITE} {' '} {RESET}'
     for i in range(height):
