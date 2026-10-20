@@ -1,7 +1,7 @@
 import os
 
 import time
-
+#anim
 frames = [0, 5, 10, 15]
 square = ["# # #", "# # #", "# # #"]
 
@@ -15,9 +15,9 @@ def anim(repeats):
                 print(f"\033[{5 + i};{x}H{line}")
             time.sleep(0.4)
 
-anim(3)
+anim(1)
 
-
+#flag
 RED = '\033[41m'
 WHITE = '\033[47m'
 BLUE = '\033[44m'
@@ -35,6 +35,7 @@ for i in range(height):
 
 
 print()
+#stat
 def sequence():
     f = open('sequence.txt')
     s = [float(j) for j in f ]
@@ -51,6 +52,7 @@ def sequence():
     f.close()
 sequence()
 
+#Узор
 print('')
 def pattern(repeats):
     height = 5
