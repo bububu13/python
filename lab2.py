@@ -1,4 +1,5 @@
 from csv import reader
+import random
 import xml.etree.ElementTree as ET
 
 def count():
@@ -41,15 +42,11 @@ def find_publishers():
 def rating(r):
     table = open_table()
     items = [j for j in table]
-    items.sort(key = lambda i: int(i[5]))
-    items.reverse()
+    items.sort(key = lambda i: int(i[5]), reverse=True)
     items = items[:r]
-    output = open('result.txt', 'w')
-    output.write(f'20 популярных книг:\n\n')
     print('Самые популярные книги:')
     for i in range(r):
         print(i+1, items[i][1], items[i][5], 'скачиваний')
-        output.write(f'{i+1} Автор: {items[i][2]}. Название: {items[i][1]} - {items[i][3]} год\n\n')
 
 def give_currency():
     file = ET.parse('currency.xml')
@@ -61,6 +58,13 @@ def give_currency():
             currency_list.append(currency_name)
     print(currency_list)
 
+def random_books(count):
+    table =open_table()
+    items = [j for j in table]
+    output = open('result.txt', 'w')
+    random_books = random.sample(items, count)
+    for i in range(count):
+        output.write(f'{i+1} Автор: {random_books[i][2]}. Название: {random_books[i][1]} - {random_books[i][3]} год\n\n')
 
 f = open('books.csv', 'r')
 def open_table():
@@ -69,9 +73,10 @@ def open_table():
     table = reader(f, delimiter=';')
     return table
 
+# random_books(20) # Реализовать генератор библиографических ссылок вида <автор>. <название> - <год> для 20 записей. Записи выбрать произвольно. Список сохраняется как отдельный файл текстового формата с нумерацией строк.
 # count() # Вывести количество записей, у которых в поле Название строка длиннее 30 символов.
 # search() # Реализовать поиск книги по автору, использовать ограничение на выдачу в зависимости от варианта.
-# rating(20) # Самые популярные 20 книг + Реализовать генератор библиографических ссылок вида <автор>. <название> - <год> для 20 записей. Записи выбрать произвольно. Список сохраняется как отдельный файл текстового формата с нумерацией строк.
+# rating(20) # Самые популярные 20 книг
 # give_currency() # Распарсить файл и извлечь данные, согласно варианту. Выполнить приведения типов по необходимости.
 # find_publishers() # Вывести перечень всех тегов без повторений (для books-en.csv - перечень издательств без повторений).
 f.close()
