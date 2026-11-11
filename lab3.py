@@ -52,7 +52,6 @@ bg_label.place(x=0, y=0, relwidth=1, relheight=1)
 lbl = Label(window, text="Генератор ключей", font=("Arial Bold", 20))
 lbl.grid(column=0, row=0, columnspan=3)
 
-
 entr = Label(window, text="Введите 5-значное HEX число")
 entr.grid(column=0, row=1,padx=10, pady=10)
 
