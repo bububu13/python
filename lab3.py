@@ -39,14 +39,12 @@ def generate_key():
 
 window = Tk()
 window.title("Добро пожаловать в приложение PythonRu")
-window.geometry('600x600')
+window.geometry('500x500')
 
-bg_image_raw = Image.open("Screenshot_20260603-124121.png")
-bg_image_resized = bg_image_raw.resize(
-    (600, 600)
-)  # Подгоняем под размер окна
-bg_photo = ImageTk.PhotoImage(bg_image_resized)
 
+t = Image.open("Screenshot_20260603-124121.png")
+bg_resized = t.resize((500, 500))
+bg_photo = ImageTk.PhotoImage(bg_resized)
 bg_label = Label(window, image=bg_photo)
 bg_label.place(x=0, y=0, relwidth=1, relheight=1)
 
