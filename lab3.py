@@ -1,19 +1,20 @@
-from string import ascii_uppercase
 from tkinter import *
 import random
 import string
+from PIL import Image, ImageTk
 
 def generate_key():
     key_input: str = txt.get()
     ps.configure(text='')
     try:
         num = str(int(key_input, 16))
+        print(num)
     except ValueError:
         res.configure(text='Это не HEX число')
-        return 'Это не HEX число'
+        return
 
     if len(num)<5:
-        ps.configure(text=f'Число оказалось {len(num)} значным. В конце было добавлено {5 - len(num)} нулей')
+        ps.configure(text=f'Число оказалось {len(num)} значным. В начале было добавлено {5 - len(num)} нулей')
         num = num.zfill(5)
 
 
@@ -30,35 +31,47 @@ def generate_key():
         random.shuffle(block_chars)
         blocks.append("".join(block_chars))
 
-    key = f'{blocks[0]}-{blocks[1]}-{blocks[2]}-{second_two}'
+    key = f'{blocks[0]}-{blocks[1]}-{blocks[2]} {second_two}'
     res.configure(text=key)
-    return key
+    return
 
 
 
 window = Tk()
 window.title("Добро пожаловать в приложение PythonRu")
 window.geometry('600x600')
+
+bg_image_raw = Image.open("Screenshot_20260603-124121.png")
+bg_image_resized = bg_image_raw.resize(
+    (600, 600)
+)  # Подгоняем под размер окна
+bg_photo = ImageTk.PhotoImage(bg_image_resized)
+
+bg_label = Label(window, image=bg_photo)
+bg_label.place(x=0, y=0, relwidth=1, relheight=1)
+
+
 lbl = Label(window, text="Генератор ключей", font=("Arial Bold", 20))
-lbl.grid(column=0, row=0,)
+lbl.grid(column=0, row=0, columnspan=3)
+
 
 entr = Label(window, text="Введите 5-значное HEX число")
-entr.grid(column=0, row=1)
+entr.grid(column=0, row=1,padx=10, pady=10)
 
 txt = Entry(window,width=10)
-txt.grid(column=1, row=1)
+txt.grid(column=1, row=1, padx=10,pady=10)
 
 btn = Button(window, text="Сгенерировать", command=generate_key)
-btn.grid(column=2,row=1)
+btn.grid(column=2,row=1,padx=10,pady=10)
 
 txt2 = Label(window, text="Ваш ключ:")
-txt2.grid(column=0,row=2)
+txt2.grid(column=0,row=2,pady=10)
 
 res = Label(window, text='')
-res.grid(column=1,row=2)
+res.grid(column=1,row=2,pady=10)
 
 ps = Label(window, text='', anchor='center')
-ps.grid(column=0,row=3)
+ps.grid(column=0,row=3,columnspan=3)
 window.mainloop()
 
 
